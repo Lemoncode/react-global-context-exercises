@@ -1,8 +1,23 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
-export const TextFieldForm = props => {
-  const { name, label, onChange, value, error, type, onBlur } = props;
+export const TextFieldComponent = props => {
+  const {
+    name,
+    label,
+    onChange,
+    value,
+    error,
+    type,
+    onBlur,
+    select,
+    disabled,
+    multiline,
+    rows,
+    rowsMax,
+    placeholder,
+    children,
+  } = props;
 
   const handleChange = e => {
     onChange(name, e.target.value);
@@ -24,10 +39,18 @@ export const TextFieldForm = props => {
       onBlur={handleBlur}
       error={Boolean(error)}
       helperText={error}
-    />
+      select={select}
+      disabled={disabled}
+      multiline={multiline}
+      rows={rows}
+      rowsMax={rowsMax}
+      placeholder={placeholder}
+    >
+      {children}
+    </TextField>
   );
 };
 
-TextFieldForm.defaultProps = {
+TextFieldComponent.defaultProps = {
   type: 'text',
 };

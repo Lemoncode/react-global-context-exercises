@@ -1,10 +1,12 @@
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles({
-  formContainer: {
+  container: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    minWidth: '400px',
+  },
+  picture: {
+    maxWidth: '31.25rem',
   },
 });

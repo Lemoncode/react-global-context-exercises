@@ -3,7 +3,7 @@ import { Router, Route, Switch } from 'react-router-dom';
 
 import { history } from './history';
 import { routes } from './routes';
-import { LoginScene, HotelCollectionScene } from 'scenes';
+import { LoginScene, HotelCollectionScene, HotelEditScene } from 'scenes';
 
 export const RouterComponent = () => {
   return (
@@ -19,10 +19,7 @@ export const RouterComponent = () => {
           path={routes.hotelCollection}
           component={HotelCollectionScene}
         />
-        <Route
-          path={routes.hotelEdit}
-          component={props => <h1>Edit {props.match.params.id}</h1>}
-        />
+        <Route path={routes.hotelEdit} component={HotelEditScene} />
       </Switch>
     </Router>
   );
