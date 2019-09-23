@@ -9,5 +9,5 @@ export const routes = {
 
 export const linkRoutes = {
   ...routes,
-  hotelEdit: id => generatePath(routes.edit, { id }),
+  hotelEdit: id => generatePath(routes.hotelEdit, { id }),
 };

@@ -3,7 +3,7 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import { TextFieldForm } from 'common/components';
+import { TextFieldForm, FormComponent } from 'common/components';
 import { useStyles } from './login.component.styles';
 
 export const LoginComponent = props => {
@@ -15,7 +15,7 @@ export const LoginComponent = props => {
     <Card>
       <CardHeader title="Login" />
       <CardContent>
-        <div className={classes.formContainer}>
+        <FormComponent className={classes.formContainer} onSubmit={onLogin}>
           <TextFieldForm
             label="Name"
             name="login"
@@ -31,10 +31,10 @@ export const LoginComponent = props => {
             onChange={onUpdateCredentials}
             error={credentialErrors.password.message}
           />
-          <Button variant="contained" color="primary" onClick={onLogin}>
+          <Button type="submit" variant="contained" color="primary">
             Login
           </Button>
-        </div>
+        </FormComponent>
       </CardContent>
     </Card>
   );
