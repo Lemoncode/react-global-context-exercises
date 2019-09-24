@@ -8,7 +8,7 @@ const validationSchema = {
     rating: [
       {
         validator: minNumber.validator,
-        customArgs: { minValue: 3, inclusive: false },
+        customArgs: { minValue: 3 },
       },
     ],
     address: [Validators.required.validator],
