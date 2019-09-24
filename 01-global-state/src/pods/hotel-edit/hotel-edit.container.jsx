@@ -1,4 +1,5 @@
 import React from 'react';
+import { history, linkRoutes } from 'core/router';
 import { createEmptyHotel, createEmptyHotelErrors } from './hotel-edit.vm';
 import { formValidation } from './hotel-edit.validation';
 import { getCities } from './api';
@@ -13,7 +14,6 @@ export const HotelEditContainer = props => {
 
   React.useEffect(() => {
     getCities().then(setCities);
-    // setHotel(hotelMockData);
   }, []);
 
   const onFieldUpdate = (fieldId, value) => {
@@ -30,17 +30,13 @@ export const HotelEditContainer = props => {
     });
   };
 
-  // const loadHotel = () => {
-  //   console.log(props.match.params[hotelEditRouteParams.id]);
-  // };
-
-  // React.useEffect(() => {
-  //   loadHotel();
-  // }, []);
-
   const handleSave = () => {
     formValidation.validateForm(hotel).then(formValidationResult => {
-      setHotelErrors(formValidationResult.fieldErrors);
+      if (formValidationResult.succeeded) {
+        history.push(linkRoutes.hotelCollection);
+      } else {
+        setHotelErrors(formValidationResult.fieldErrors);
+      }
     });
   };
 

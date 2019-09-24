@@ -24,6 +24,14 @@ export const HotelEditComponent = props => {
         error={hotelErrors.name.message}
       />
 
+      <TextFieldComponent
+        label="Address"
+        name="address"
+        value={hotel.address}
+        onChange={onFieldUpdate}
+        error={hotelErrors.address.message}
+      />
+
       <img className={classes.picture} src={hotel.picture} />
 
       <RatingComponent
