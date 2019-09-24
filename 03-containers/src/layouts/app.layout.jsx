@@ -7,8 +7,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import { GlobalStateContext } from 'core/context';
 import { useFlasher } from 'common/hooks';
 
-export const AppLayout = props => {
-  const { state } = React.useContext(GlobalStateContext);
+const InnerAppLayout = React.memo(props => {
+  const { login, children } = props;
 
   return (
     <div>
@@ -18,11 +18,18 @@ export const AppLayout = props => {
             <AccountCircle />
           </IconButton>
           <Typography ref={useFlasher()} variant="h6" color="inherit">
-            {state.login}
+            {login}
           </Typography>
         </Toolbar>
       </AppBar>
-      {props.children}
+      {children}
     </div>
   );
+});
+
+export const AppLayout = props => {
+  const { children } = props;
+  const { state } = React.useContext(GlobalStateContext);
+
+  return <InnerAppLayout login={state.login}>{children}</InnerAppLayout>;
 };

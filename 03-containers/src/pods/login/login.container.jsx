@@ -9,8 +9,8 @@ import {
 import { validateCredentials } from './api';
 import { formValidation } from './login.validation';
 
-export const LoginContainer = props => {
-  const { dispatch } = React.useContext(GlobalStateContext);
+const InnerLoginContainer = React.memo(props => {
+  const { onUpdateLogin } = props;
   const [credentialErrors, setCredentialErrors] = React.useState(
     createEmptyCredentialErrors()
   );
@@ -23,7 +23,7 @@ export const LoginContainer = props => {
     validateCredentials(credentials.login, credentials.password).then(
       areValidCredentials => {
         if (areValidCredentials) {
-          dispatch({ login: credentials.login });
+          onUpdateLogin({ login: credentials.login });
           history.push(linkRoutes.hotelCollection);
         } else {
           alert(
@@ -66,4 +66,10 @@ export const LoginContainer = props => {
       credentialErrors={credentialErrors}
     />
   );
+});
+
+export const LoginContainer = () => {
+  const { dispatch } = React.useContext(GlobalStateContext);
+  const handleUpdateLogin = React.useCallback(dispatch, []);
+  return <InnerLoginContainer onUpdateLogin={handleUpdateLogin} />;
 };

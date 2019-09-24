@@ -7,9 +7,8 @@ import { formValidation } from './hotel-edit.validation';
 import { getCities } from './api';
 import { HotelEditComponent } from './hotel-edit.component';
 
-const InnerHotelEditContainer = props => {
-  const { match } = props;
-  const { state, dispatch } = React.useContext(GlobalStateContext);
+const InnerHotelEditContainer = React.memo(props => {
+  const { id, hotelCollection, onUpdateHotelCollection } = props;
   const [hotel, setHotel] = React.useState(createEmptyHotel());
   const [hotelErrors, setHotelErrors] = React.useState(
     createEmptyHotelErrors()
@@ -21,11 +20,9 @@ const InnerHotelEditContainer = props => {
   }, []);
 
   React.useEffect(() => {
-    const selectedHotel = state.hotelCollection.find(
-      h => h.id === match.params.id
-    );
+    const selectedHotel = hotelCollection.find(h => h.id === id);
     setHotel(selectedHotel ? selectedHotel : createEmptyHotel());
-  }, [match.params.id]);
+  }, [id]);
 
   const onFieldUpdate = (fieldId, value) => {
     setHotel({
@@ -44,14 +41,14 @@ const InnerHotelEditContainer = props => {
   const handleSave = () => {
     formValidation.validateForm(hotel).then(formValidationResult => {
       if (formValidationResult.succeeded) {
-        const hotelCollection = state.hotelCollection.map(h =>
+        const hotelCollection = hotelCollection.map(h =>
           h.id === hotel.id
             ? {
                 ...hotel,
               }
             : h
         );
-        dispatch({ hotelCollection });
+        onUpdateHotelCollection({ hotelCollection });
         history.push(linkRoutes.hotelCollection);
       } else {
         setHotelErrors(formValidationResult.fieldErrors);
@@ -68,6 +65,18 @@ const InnerHotelEditContainer = props => {
       onSave={handleSave}
     />
   );
-};
+});
 
-export const HotelEditContainer = withRouter(InnerHotelEditContainer);
+export const HotelEditContainer = withRouter(props => {
+  const { match } = props;
+  const { state, dispatch } = React.useContext(GlobalStateContext);
+  const handleUpdateHotelCollection = React.useCallback(dispatch, []);
+
+  return (
+    <InnerHotelEditContainer
+      id={match.params.id}
+      hotelCollection={state.hotelCollection}
+      onUpdateHotelCollection={handleUpdateHotelCollection}
+    />
+  );
+});

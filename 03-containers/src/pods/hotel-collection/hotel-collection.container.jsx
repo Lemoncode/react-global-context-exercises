@@ -3,8 +3,8 @@ import { HotelCollectionComponent } from './hotel-collection.component';
 import { linkRoutes, history } from 'core/router';
 import { useHotelCollection } from './use-hotel-collection.hook';
 
-export const HotelCollectionContainer = props => {
-  const { hotelCollection, onFetchHotelCollection } = useHotelCollection();
+const InnerHotelCollectionContainer = React.memo(props => {
+  const { hotelCollection, onFetchHotelCollection } = props;
 
   const handleEditHotel = hotelId => {
     const route = linkRoutes.hotelEdit(hotelId);
@@ -19,6 +19,22 @@ export const HotelCollectionContainer = props => {
     <HotelCollectionComponent
       hotelCollection={hotelCollection}
       onEditHotel={handleEditHotel}
+    />
+  );
+});
+
+export const HotelCollectionContainer = () => {
+  const { hotelCollection, onFetchHotelCollection } = useHotelCollection();
+
+  const handleFetchHotelCollection = React.useCallback(
+    onFetchHotelCollection,
+    []
+  );
+
+  return (
+    <InnerHotelCollectionContainer
+      hotelCollection={hotelCollection}
+      onFetchHotelCollection={handleFetchHotelCollection}
     />
   );
 };
