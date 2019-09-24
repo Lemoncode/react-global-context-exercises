@@ -7,12 +7,15 @@ import { GlobalStateContext } from 'core/context';
 export const useHotelCollection = () => {
   const { state, dispatch } = React.useContext(GlobalStateContext);
 
-  const onFetchHotelCollection = () =>
-    fetchHotelCollection().then(hotels =>
-      dispatch({
-        hotelCollection: mapCollection(hotels, mapFromApiToVm),
-      })
-    );
+  const onFetchHotelCollection = () => {
+    if (state.hotelCollection.length === 0) {
+      fetchHotelCollection().then(hotels =>
+        dispatch({
+          hotelCollection: mapCollection(hotels, mapFromApiToVm),
+        })
+      );
+    }
+  };
 
   return { hotelCollection: state.hotelCollection, onFetchHotelCollection };
 };

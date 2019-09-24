@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { GlobalStateContext } from 'core/context';
+import { useFlasher } from 'common/hooks';
 
 export const AppLayout = props => {
   const { state } = React.useContext(GlobalStateContext);
@@ -16,7 +17,7 @@ export const AppLayout = props => {
           <IconButton color="inherit" aria-label="Menu">
             <AccountCircle />
           </IconButton>
-          <Typography variant="h6" color="inherit">
+          <Typography ref={useFlasher()} variant="h6" color="inherit">
             {state.login}
           </Typography>
         </Toolbar>
