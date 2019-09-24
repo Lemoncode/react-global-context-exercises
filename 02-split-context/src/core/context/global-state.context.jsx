@@ -1,31 +1,44 @@
 import React from 'react';
 
-const createDefaultState = () => ({
+const createEmptyLoginState = () => ({
   login: '',
+});
+
+export const LoginContext = React.createContext({
+  state: createEmptyLoginState(),
+  dispatch: () => {},
+});
+
+const createEmptyHotelCollectionState = () => ({
   hotelCollection: [],
 });
 
-export const GlobalStateContext = React.createContext({
-  state: createDefaultState(),
-  dispatch: () => {
-    console.warn(
-      'if you are reading this, likely you forgot to add the provider on top of your app'
-    );
-  },
-});
-
-const reducer = (state = createDefaultState(), newValue) => ({
-  ...state,
-  ...newValue,
+export const HotelCollectionContext = React.createContext({
+  state: createEmptyHotelCollectionState(),
+  dispatch: () => {},
 });
 
 export const GlobalStateProvider = props => {
   const { children } = props;
-  const [state, dispatch] = React.useReducer(reducer, createDefaultState());
+  const [loginState, setLoginState] = React.useState(createEmptyLoginState());
+  const loginValue = React.useMemo(
+    () => ({ state: loginState, dispatch: setLoginState }),
+    [loginState]
+  );
+
+  const [hotelCollectionState, setHotelCollectionState] = React.useState(
+    createEmptyHotelCollectionState()
+  );
+  const hotelCollectionValue = React.useMemo(
+    () => ({ state: hotelCollectionState, dispatch: setHotelCollectionState }),
+    [hotelCollectionState]
+  );
 
   return (
-    <GlobalStateContext.Provider value={{ state, dispatch }}>
-      {children}
-    </GlobalStateContext.Provider>
+    <LoginContext.Provider value={loginValue}>
+      <HotelCollectionContext.Provider value={hotelCollectionValue}>
+        {children}
+      </HotelCollectionContext.Provider>
+    </LoginContext.Provider>
   );
 };

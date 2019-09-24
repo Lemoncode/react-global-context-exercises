@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { GlobalStateContext } from 'core/context';
+import { HotelCollectionContext } from 'core/context';
 import { history, linkRoutes } from 'core/router';
 import { createEmptyHotel, createEmptyHotelErrors } from './hotel-edit.vm';
 import { formValidation } from './hotel-edit.validation';
@@ -9,7 +9,7 @@ import { HotelEditComponent } from './hotel-edit.component';
 
 const InnerHotelEditContainer = props => {
   const { match } = props;
-  const { state, dispatch } = React.useContext(GlobalStateContext);
+  const { state, dispatch } = React.useContext(HotelCollectionContext);
   const [hotel, setHotel] = React.useState(createEmptyHotel());
   const [hotelErrors, setHotelErrors] = React.useState(
     createEmptyHotelErrors()

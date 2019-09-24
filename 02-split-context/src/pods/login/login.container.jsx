@@ -1,7 +1,7 @@
 import React from 'react';
 import { LoginComponent } from './login.component';
 import { linkRoutes, history } from 'core/router';
-import { GlobalStateContext } from 'core/context';
+import { LoginContext } from 'core/context';
 import {
   createEmptyCredentials,
   createEmptyCredentialErrors,
@@ -10,7 +10,7 @@ import { validateCredentials } from './api';
 import { formValidation } from './login.validation';
 
 export const LoginContainer = props => {
-  const { dispatch } = React.useContext(GlobalStateContext);
+  const { dispatch } = React.useContext(LoginContext);
   const [credentialErrors, setCredentialErrors] = React.useState(
     createEmptyCredentialErrors()
   );

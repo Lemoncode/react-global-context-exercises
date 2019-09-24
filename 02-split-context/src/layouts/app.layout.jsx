@@ -4,11 +4,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import { GlobalStateContext } from 'core/context';
+import { LoginContext } from 'core/context';
 import { useFlasher } from 'common/hooks';
 
 export const AppLayout = props => {
-  const { state } = React.useContext(GlobalStateContext);
+  const { state } = React.useContext(LoginContext);
 
   return (
     <div>
