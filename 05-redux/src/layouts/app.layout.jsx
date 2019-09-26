@@ -1,14 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import { GlobalStateContext } from 'core/context';
 import { useFlasher } from 'common/hooks';
 
-export const AppLayout = props => {
-  const { state } = React.useContext(GlobalStateContext);
+const InnerAppLayout = props => {
+  const { login, children } = props;
 
   return (
     <div>
@@ -18,11 +18,17 @@ export const AppLayout = props => {
             <AccountCircle />
           </IconButton>
           <Typography ref={useFlasher()} variant="h6" color="inherit">
-            {state.login}
+            {login}
           </Typography>
         </Toolbar>
       </AppBar>
-      {props.children}
+      {children}
     </div>
   );
 };
+
+const mapStateToProps = state => ({
+  login: state.core.login,
+});
+
+export const AppLayout = connect(mapStateToProps)(InnerAppLayout);

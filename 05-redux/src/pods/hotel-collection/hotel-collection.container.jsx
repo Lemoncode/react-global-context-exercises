@@ -1,10 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { HotelCollectionComponent } from './hotel-collection.component';
 import { linkRoutes, history } from 'core/router';
 import { useHotelCollection } from './use-hotel-collection.hook';
+import { coreActions } from 'core/store';
 
-export const HotelCollectionContainer = props => {
-  const { hotelCollection, onFetchHotelCollection } = useHotelCollection();
+const InnerHotelCollectionContainer = props => {
+  const { hotelCollection, onUpdateHotelCollection } = props;
+  const { onFetchHotelCollection } = useHotelCollection(
+    hotelCollection,
+    onUpdateHotelCollection
+  );
 
   const handleEditHotel = hotelId => {
     const route = linkRoutes.hotelEdit(hotelId);
@@ -22,3 +28,17 @@ export const HotelCollectionContainer = props => {
     />
   );
 };
+
+const mapStateToProps = state => ({
+  hotelCollection: state.core.hotelCollection,
+});
+
+const mapDispatchToProps = dispatch => ({
+  onUpdateHotelCollection: hotelCollection =>
+    dispatch(coreActions.onUpdateHotelCollection(hotelCollection)),
+});
+
+export const HotelCollectionContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(InnerHotelCollectionContainer);

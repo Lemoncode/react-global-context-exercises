@@ -1,5 +1,6 @@
 import React from 'react';
-import { Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 
 import { history } from './history';
 import { routes } from './routes';
@@ -9,7 +10,7 @@ import { AppLayout } from '../../layouts/app.layout';
 export const RouterComponent = () => {
   return (
     <AppLayout>
-      <Router history={history}>
+      <ConnectedRouter history={history}>
         <Switch>
           <Route
             exact={true}
@@ -23,7 +24,7 @@ export const RouterComponent = () => {
           />
           <Route path={routes.hotelEdit} component={HotelEditScene} />
         </Switch>
-      </Router>
+      </ConnectedRouter>
     </AppLayout>
   );
 };

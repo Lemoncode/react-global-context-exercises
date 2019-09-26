@@ -1,7 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { LoginComponent } from './login.component';
 import { linkRoutes, history } from 'core/router';
-import { GlobalStateContext } from 'core/context';
+import { coreActions } from 'core/store';
 import {
   createEmptyCredentials,
   createEmptyCredentialErrors,
@@ -9,8 +10,8 @@ import {
 import { validateCredentials } from './api';
 import { formValidation } from './login.validation';
 
-export const LoginContainer = props => {
-  const { dispatch } = React.useContext(GlobalStateContext);
+const InnerLoginContainer = props => {
+  const { onUpdateLogin } = props;
   const [credentialErrors, setCredentialErrors] = React.useState(
     createEmptyCredentialErrors()
   );
@@ -23,7 +24,7 @@ export const LoginContainer = props => {
     validateCredentials(credentials.login, credentials.password).then(
       areValidCredentials => {
         if (areValidCredentials) {
-          dispatch({ login: credentials.login });
+          onUpdateLogin(credentials.login);
           history.push(linkRoutes.hotelCollection);
         } else {
           alert(
@@ -67,3 +68,14 @@ export const LoginContainer = props => {
     />
   );
 };
+
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = dispatch => ({
+  onUpdateLogin: login => dispatch(coreActions.onUpdateLogin(login)),
+});
+
+export const LoginContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(InnerLoginContainer);
