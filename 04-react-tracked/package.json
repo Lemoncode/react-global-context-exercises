@@ -25,7 +25,8 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-hot-loader": "^4.8.8",
-    "react-router-dom": "^5.0.0"
+    "react-router-dom": "^5.0.0",
+    "react-tracked": "^0.8.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",

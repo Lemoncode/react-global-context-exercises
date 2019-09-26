@@ -1,17 +1,16 @@
 import React from 'react';
+import { createContainer } from 'react-tracked';
+
+const useValue = ({ reducer, initialState }) =>
+  React.useReducer(reducer, initialState);
+
+const { Provider, useTracked } = createContainer(useValue);
+
+export { useTracked };
 
 const createDefaultState = () => ({
   login: '',
   hotelCollection: [],
-});
-
-export const GlobalStateContext = React.createContext({
-  state: createDefaultState(),
-  dispatch: () => {
-    console.warn(
-      'if you are reading this, likely you forgot to add the provider on top of your app'
-    );
-  },
 });
 
 const reducer = (state = createDefaultState(), newValue) => ({
@@ -21,11 +20,10 @@ const reducer = (state = createDefaultState(), newValue) => ({
 
 export const GlobalStateProvider = props => {
   const { children } = props;
-  const [state, dispatch] = React.useReducer(reducer, createDefaultState());
 
   return (
-    <GlobalStateContext.Provider value={{ state, dispatch }}>
+    <Provider reducer={reducer} initialState={createDefaultState()}>
       {children}
-    </GlobalStateContext.Provider>
+    </Provider>
   );
 };
