@@ -1,4 +1,4 @@
-# 01 Global state
+# 02 Global state
 
 In this example we will create a global state to manage app state (login, hotels, edit hotel, etc.)
 
@@ -8,7 +8,7 @@ Install [Node.js and npm](https://nodejs.org/en/) if they are not already instal
 
 ## Steps to build it
 
-- Copy the content of the `00-boiler` folder to an empty folder for the sample.
+- Copy the content of the `01-routing` folder to an empty folder for the sample.
 
 - Install the npm packages described in the [./package.json](./package.json) and verify that it works:
 

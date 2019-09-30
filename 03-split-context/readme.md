@@ -1,4 +1,4 @@
-# 02 Split context
+# 03 Split context
 
 In this example we will split the global state to avoid unnecessary re-renders.
 
@@ -8,7 +8,7 @@ Install [Node.js and npm](https://nodejs.org/en/) if they are not already instal
 
 ## Steps to build it
 
-- Copy the content of the `01-global-state` folder to an empty folder for the sample.
+- Copy the content of the `02-global-state` folder to an empty folder for the sample.
 
 - Install the npm packages described in the [./package.json](./package.json) and verify that it works:
 
