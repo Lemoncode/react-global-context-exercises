@@ -1,12 +1,14 @@
 import React from 'react';
 import { hot } from 'react-hot-loader/root';
-import { RouterComponent } from 'core/router';
 import { SessionProvider } from 'core/session.context';
+import { LoginScene, HotelCollectionScene, HotelEditScene } from 'scenes';
 
 const App = () => {
   return (
     <SessionProvider>
-      <RouterComponent />
+      <LoginScene />
+      <HotelCollectionScene />
+      <HotelEditScene />
     </SessionProvider>
   );
 };

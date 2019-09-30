@@ -1,6 +1,6 @@
 import React from 'react';
-import { LoginComponent } from './login.component';
 import { linkRoutes, history } from 'core/router';
+import { LoginComponent } from './login.component';
 import { SessionContext } from 'core/session.context';
 import {
   createEmptyCredentials,

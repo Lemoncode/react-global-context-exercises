@@ -1,6 +1,5 @@
 import React from 'react';
 import { LoginComponent } from './login.component';
-import { linkRoutes, history } from 'core/router';
 import { SessionContext } from 'core/session.context';
 import {
   createEmptyCredentials,
@@ -24,7 +23,7 @@ export const LoginContainer = props => {
       areValidCredentials => {
         if (areValidCredentials) {
           sessionContext.onUpdateLogin(credentials.login);
-          history.push(linkRoutes.hotelCollection);
+          // TODO: navigate hotelCollection
         } else {
           alert(
             'invalid credentials, use admin/test, excercise: display a mui snackbar instead of this alert.'

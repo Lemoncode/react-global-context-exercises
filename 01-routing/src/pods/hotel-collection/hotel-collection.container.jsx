@@ -1,6 +1,6 @@
 import React from 'react';
-import { HotelCollectionComponent } from './hotel-collection.component';
 import { linkRoutes, history } from 'core/router';
+import { HotelCollectionComponent } from './hotel-collection.component';
 import { useHotelCollection } from './use-hotel-collection.hook';
 
 export const HotelCollectionContainer = props => {
