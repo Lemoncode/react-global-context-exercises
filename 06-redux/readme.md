@@ -24,7 +24,7 @@ npm install redux react-redux --save
 
 - We need to configure the redux `store` and the `combined reducers`:
 
-### ./src/core/store/root-reducer.jsx
+### ./src/core/store/root-reducer.js
 
 ```javascript
 import { combineReducers } from 'redux';
@@ -265,7 +265,7 @@ npm install connected-react-router --save
 
 - We need to configure `rootReducers`, `store` and `router`:
 
-### ./src/core/store/root-reducer.jsx
+### ./src/core/store/root-reducer.js
 
 ```diff
 import { combineReducers } from 'redux';
