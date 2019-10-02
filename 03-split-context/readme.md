@@ -125,7 +125,7 @@ export const LoginContainer = props => {
 
 - And `HotelCollectionContext`:
 
-### ./src/pods/login/login.container.jsx
+### ./src/pods/hotel-collection/use-hotel-collection.hook.jsx
 
 ```diff
 ...
@@ -139,7 +139,7 @@ export const useHotelCollection = () => {
 ...
 ```
 
-### ./src/pods/login/login.container.jsx
+### ./src/pods/hotel-edit/hotel-edit.container.jsx
 
 ```diff
 ...

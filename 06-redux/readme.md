@@ -257,7 +257,7 @@ import { rootReducer } from './root-reducer';
 
 ```
 
-- How to suppor `react-router` with `redux`? We need to install `connected-react-router` that it provides a reducer and actions to keep react-router tracing:
+- How to support `react-router` with `redux`? We need to install `connected-react-router` that it provides a reducer and actions to keep react-router tracing:
 
 ```bash
 npm install connected-react-router --save
@@ -437,11 +437,6 @@ export const loginReducer = (state = '', action) => {
 ```
 
 - Implement `hotel collection reducer`:
-
-### ./src/core/store/reducers/login.reducer.js
-
-```javascript
-```
 
 ### ./src/pods/hotel-collection/store/hotel-collection.reducer.js
 
