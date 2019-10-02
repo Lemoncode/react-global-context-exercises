@@ -225,9 +225,9 @@ export const history = createHashHistory();
 ### ./src/core/router/index.js
 
 ```diff
++ export * from './history';
 export * from './router.component';
 export * from './routes';
-+ export * from './history';
 
 ```
 
